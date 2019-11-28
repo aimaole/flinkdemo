@@ -18,6 +18,7 @@ object StreamWordCount {
       .filter(_.nonEmpty)
       .map((_,1))
       .keyBy(0)
+      .countWindow(10)
       .sum(1)
 
     wordCountDataStream.print()
