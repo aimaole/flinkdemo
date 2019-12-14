@@ -16,7 +16,7 @@ object EsSinkTest {
     env.setParallelism(1)
 
     //source
-    val inputStream = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test")
+    val inputStream = env.readTextFile("F:\\flinkdemo\\src\\main\\resources\\test")
     //1 、基本转换算子与简单聚合算子  transfrom
     val dataStream = inputStream.map(data => {
       val strings = data.split(",")
@@ -25,7 +25,7 @@ object EsSinkTest {
 
     //sink
     val httpHosts = new util.ArrayList[HttpHost]()
-    httpHosts.add(new HttpHost("localhost"), 9200)
+    httpHosts.add(new HttpHost("localhost", 9200))
     //创建一个esSinkBuilder
     val esSink = new ElasticsearchSink.Builder[SensorReading](httpHosts, new ElasticsearchSinkFunction[SensorReading] {
       override def process(t: SensorReading, runtimeContext: RuntimeContext, requestIndexer: RequestIndexer): Unit = {
