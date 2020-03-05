@@ -1,8 +1,8 @@
-package com.maomao.flink.dataset
+package com.maomao.wc
 
-import org.apache.flink.api.scala.{ExecutionEnvironment, _}
+import org.apache.flink.api.scala.ExecutionEnvironment
 
-object WordCountScala{
+object WordCountScala {
   def main(args: Array[String]) {
     //初始化环境
     val env = ExecutionEnvironment.getExecutionEnvironment

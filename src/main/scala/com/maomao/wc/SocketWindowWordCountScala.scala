@@ -1,4 +1,4 @@
-package com.maomao.flink.datastream
+package com.maomao.wc
 
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
