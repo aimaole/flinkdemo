@@ -1,7 +1,7 @@
 package com.maomao.wc
 
 import org.apache.flink.api.scala.ExecutionEnvironment
-
+import org.apache.flink.streaming.api.scala._
 object WordCountScala {
   def main(args: Array[String]) {
     //初始化环境
