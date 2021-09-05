@@ -17,7 +17,7 @@ object MyProcessFunction {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
 
-    val value = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test1")
+    val value = env.readTextFile("src/main/resources/sensor")
     // the source data stream
     val stream: DataStream[Tuple2[String, String]] = value.map(f => {
       val strings = f.split(",")

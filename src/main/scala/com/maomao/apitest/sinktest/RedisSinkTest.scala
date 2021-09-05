@@ -10,7 +10,7 @@ object RedisSinkTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
-    val inputStream = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test")
+    val inputStream = env.readTextFile("src/main/resources/test")
     //1 、基本转换算子与简单聚合算子
     val dataStream = inputStream.map(data => {
       val strings = data.split(",")

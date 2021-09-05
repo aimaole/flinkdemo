@@ -11,7 +11,7 @@ object KafkaSinkTest {
   def main(args: Array[String]): Unit = {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
-    //    val inputStream = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test")
+    //    val inputStream = env.readTextFile("src/main/resources/test")
     val props = new Properties()
     props.put("bootstrap.servers", "localhost:9092")
     props.put("group.id", "group1")

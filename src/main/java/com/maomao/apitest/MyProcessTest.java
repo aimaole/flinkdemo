@@ -22,7 +22,7 @@ public class MyProcessTest {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         // 数据源
-        DataStreamSource<String> value = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test1");
+        DataStreamSource<String> value = env.readTextFile("src/main/resources/test1");
         DataStream<Tuple2<String, String>> stream = value.map(f -> {
             String[] split = f.split(",");
            return  new Tuple2(split[0], split[1]);

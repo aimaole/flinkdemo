@@ -1,12 +1,11 @@
 package com.maomao.apitest
 
 import java.util.Properties
-
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer010, FlinkKafkaConsumerBase}
+import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaConsumer010, FlinkKafkaConsumerBase}
 
 import scala.util.Random
 
@@ -22,7 +21,7 @@ object SourceTest {
     ))
 
     //2、从文件中读取
-    val stream2 = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test")
+    val stream2 = env.readTextFile("src/main/resources/test")
 
     val stream3 = env.fromElements(1, 2, 3, 5, 8, "sadda")
 
@@ -37,7 +36,7 @@ object SourceTest {
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("auto.offset.reset", "latest")
-    val stream4 = env.addSource(new FlinkKafkaConsumer010[String]("test", new SimpleStringSchema(), props))
+    val stream4 = env.addSource(new FlinkKafkaConsumer[String]("test", new SimpleStringSchema(), props))
 
     /**
      * bin/kafka-topics.sh --list --zookeeper localhost:2181

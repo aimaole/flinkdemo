@@ -18,7 +18,7 @@ object JDBCSinkTest {
     env.setParallelism(1)
 
     //source
-    val inputStream = env.readTextFile("/home/mao/study/flinkdemo/src/main/resources/test")
+    val inputStream = env.readTextFile("src/main/resources/test")
     //1 、基本转换算子与简单聚合算子  transfrom
     val dataStream = inputStream.map(data => {
       val strings = data.split(",")
