@@ -31,6 +31,7 @@ public class Transform1_Base {
                 return StringUtils.isNotBlank(s);
             }
         });
+
         map.print();
         flatmapout.print();
         filter.print();
