@@ -8,11 +8,14 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
+import java.io.File;
+
 public class Transform1_Base {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-
-        DataStreamSource<String> inputStream = env.readTextFile("src\\main\\resources\\sensor");
+        File file = new File("src\\main\\resources\\sensor");
+        String sourceFile = file.getCanonicalPath();
+        DataStreamSource<String> inputStream = env.readTextFile(sourceFile);
 
         //1.map
         SingleOutputStreamOperator<Integer> map = inputStream.map(f -> f.length());

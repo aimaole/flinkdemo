@@ -9,13 +9,16 @@ import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.util.Collector;
 
+import java.io.File;
+
 public class WordCountBatch {
     public static void main(String[] args) throws Exception {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setRuntimeMode(RuntimeExecutionMode.BATCH);
-
-        DataStreamSource<String> stringDataStreamSource = env.readTextFile("E:\\study\\flinkdemo\\src\\main\\resources\\sensor");
+        File file = new File("src\\main\\resources\\sensor");
+        String sourceFile = file.getCanonicalPath();
+        DataStreamSource<String> stringDataStreamSource = env.readTextFile(sourceFile);
         SingleOutputStreamOperator<Tuple2<String, Integer>> sum = stringDataStreamSource.flatMap(new FlatMapFunction<String, Tuple2<String, Integer>>() {
             @Override
             public void flatMap(String line, Collector<Tuple2<String, Integer>> collector) throws Exception {
