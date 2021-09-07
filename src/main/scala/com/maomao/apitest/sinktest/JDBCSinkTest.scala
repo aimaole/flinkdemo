@@ -1,9 +1,9 @@
 package com.maomao.apitest.sinktest
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
-
 import com.maomao.apitest.SensorReading
 import org.apache.flink.configuration.Configuration
+import org.apache.flink.streaming.api.functions.sink.SinkFunction.Context
 import org.apache.flink.streaming.api.functions.sink.{RichSinkFunction, SinkFunction}
 import org.apache.flink.streaming.api.scala._
 
@@ -47,7 +47,7 @@ class MyJDBCSink() extends RichSinkFunction[SensorReading] {
   }
 
   //调用连接，执行sql
-  override def invoke(value: SensorReading, context: SinkFunction.Context[_]): Unit = {
+  override def invoke(value: SensorReading, context: Context): Unit = {
     //执行更新语句
     updateStmt.setDouble(1, value.temperature)
     updateStmt.setString(2, value.id)

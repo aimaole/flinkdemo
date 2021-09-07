@@ -5,7 +5,7 @@ import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.functions.source.SourceFunction
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaConsumer010, FlinkKafkaConsumerBase}
+import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaConsumerBase}
 
 import scala.util.Random
 
@@ -37,7 +37,6 @@ object SourceTest {
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("auto.offset.reset", "latest")
     val stream4 = env.addSource(new FlinkKafkaConsumer[String]("test", new SimpleStringSchema(), props))
-
     /**
      * bin/kafka-topics.sh --list --zookeeper localhost:2181
      *
@@ -51,12 +50,6 @@ object SourceTest {
      *
      *
      */
-
-
-
-
-
-
     //4、自定义
     val stream5 = env.addSource(new TestSourceMM())
     stream5.print("stream5")

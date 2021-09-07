@@ -1,11 +1,10 @@
 package com.maomao.apitest.sinktest
 
 import java.util.Properties
-
 import com.maomao.apitest.SensorReading
 import org.apache.flink.api.common.serialization.SimpleStringSchema
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer010, FlinkKafkaProducer010, FlinkKafkaProducer011}
+import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer}
 
 object KafkaSinkTest {
   def main(args: Array[String]): Unit = {
@@ -20,7 +19,7 @@ object KafkaSinkTest {
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("auto.offset.reset", "latest")
-    val stream4 = env.addSource(new FlinkKafkaConsumer010[String]("input", new SimpleStringSchema(), props))
+    val stream4 = env.addSource(new FlinkKafkaConsumer[String]("input", new SimpleStringSchema(), props))
 
 
     //1 、基本转换算子与简单聚合算子
@@ -30,7 +29,7 @@ object KafkaSinkTest {
     })
 
 
-    dataStream.addSink(new FlinkKafkaProducer010[String]("localhost:9092", "output", new SimpleStringSchema()))
+    dataStream.addSink(new FlinkKafkaProducer[String]("localhost:9092", "output", new SimpleStringSchema()))
 
     env.execute("KafkaSinkTest")
   }
