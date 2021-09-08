@@ -13,7 +13,7 @@ public class SensorReading implements Serializable {
         this.value = value;
     }
 
-    //flink的POJO必须有
+    //flink的POJO必须有 空参构造方法
     public SensorReading() {
     }
 

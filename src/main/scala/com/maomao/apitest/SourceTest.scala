@@ -9,7 +9,7 @@ import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKaf
 
 import scala.util.Random
 
-//温度传感器读数样例类
+//温度传感器读数 样例类
 case class SensorReading(id: String, timestamp: Long, temperature: Double)
 
 object SourceTest {
