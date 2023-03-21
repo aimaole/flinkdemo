@@ -3,15 +3,12 @@ package com.maomao.apitest.sink;
 import com.alibaba.fastjson.JSONObject;
 import com.maomao.apitest.beans.SensorReading;
 import org.apache.flink.api.common.functions.RuntimeContext;
-import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.elasticsearch.ElasticsearchSinkBase;
 import org.apache.flink.streaming.connectors.elasticsearch.ElasticsearchSinkFunction;
 import org.apache.flink.streaming.connectors.elasticsearch.RequestIndexer;
 import org.apache.flink.streaming.connectors.elasticsearch6.ElasticsearchSink;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.Requests;
@@ -62,7 +59,7 @@ public class SinkTest_ES {
         @Override
         public void process(SensorReading element, RuntimeContext ctx, RequestIndexer indexer) {
             //实现写入操作
-            JSONObject json= (JSONObject) JSONObject.toJSON(element);
+            JSONObject json = (JSONObject) JSONObject.toJSON(element);
 
             //创建请求，作为发送写入命令
             IndexRequest source = Requests.indexRequest()
